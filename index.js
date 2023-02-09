@@ -1,3 +1,8 @@
+const sonidos = {
+  click: new Audio('https://humanbenchmark.com/static/media/boop.5113a00f.mp3'),
+  acierto: new Audio('https://humanbenchmark.com/static/media/victory.58c08d6a.mp3'),
+  error: new Audio('https://humanbenchmark.com/static/media/go.60dd916f.mp3'),
+};
 let secuenciaUsuario = [];
 let intentos = 0;
 
@@ -17,12 +22,16 @@ function evaluarSecuenciaCorrecta() {
     setTimeout(() => {
       primerCuadro.classList.add('encontrado');
       segundoCuadro.classList.add('encontrado');
+      sonidos.acierto.currentTime = 0;
+      sonidos.acierto.play();
       evaluarJuegoFinalizo();
     }, 500);
   } else {
     setTimeout(() => {
       primerCuadro.classList.remove('volteado', primerCuadro.dataset.color);
       segundoCuadro.classList.remove('volteado', segundoCuadro.dataset.color);
+      sonidos.error.currentTime = 0;
+      sonidos.error.play();
     }, 500);
   }
 }
@@ -34,6 +43,8 @@ function actualizarIntentos(intentos) {
 function manejarInputUsuario(cuadroClickeado) {
   const color = cuadroClickeado.dataset.color;
   cuadroClickeado.classList.add(color, 'volteado');
+  sonidos.click.currentTime = 0;
+  sonidos.click.play();
   secuenciaUsuario.push(cuadroClickeado);
 
   if (secuenciaUsuario.length == 2) {
