@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Memotest</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <div class="container d-flex flex-column min-vh-100">
+      <header class="text-center">
+        <blockquote class="blockquote">
+          <h1>Memotest</h1>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          <cite>r/argentina programa</cite>
+        </figcaption>
+      </header>
+      <div class="bg-primary-subtle p-2 rounded-3">
+        <div class="mx-auto text-center">
+          <p id="intentos" class="my-0 lead">Intentos realizados: 0</p>
+          <button id="reiniciar-juego" class="btn bg-primary my-1 btn-sm">Reiniciar</button>
+        </div>
+      </div>
+      <main role="main">
+        <h1 id="modal-ganar" class="text-center my-5 escondido">Ganaste !!!</h1>
+        <div id="tablero" class="my-4 container text-center">
+          <div class="row">
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+          </div>
+          <div class="row">
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+          </div>
+          <div class="row">
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+          </div>
+          <div class="row">
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+            <div class="col cuadro"></div>
+          </div>
+        </div>
+      </main>
+      <footer class="mt-auto">
+        <h6 class="text-center">Creado por <a href="https://github.com/daxas-boop" target="_blank">Matias Z.</a></h6>
+      </footer>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
