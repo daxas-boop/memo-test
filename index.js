@@ -1,11 +1,28 @@
 let secuenciaUsuario = [];
 
+function evaluarSecuenciaCorrecta() {
+  const primerCuadro = secuenciaUsuario[0];
+  const segundoCuadro = secuenciaUsuario[1];
+  if (primerCuadro.dataset.color === segundoCuadro.dataset.color) {
+    setTimeout(() => {
+      primerCuadro.classList.add('encontrado');
+      segundoCuadro.classList.add('encontrado');
+    }, 500);
+  } else {
+    setTimeout(() => {
+      primerCuadro.classList.remove('volteado', primerCuadro.dataset.color);
+      segundoCuadro.classList.remove('volteado', segundoCuadro.dataset.color);
+    }, 500);
+  }
+}
+
 function manejarInputUsuario(cuadroClickeado) {
   const color = cuadroClickeado.dataset.color;
   cuadroClickeado.classList.add(color, 'volteado');
   secuenciaUsuario.push(cuadroClickeado);
 
   if (secuenciaUsuario.length == 2) {
+    evaluarSecuenciaCorrecta();
     secuenciaUsuario = [];
   }
 }
