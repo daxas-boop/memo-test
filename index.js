@@ -1,4 +1,5 @@
 let secuenciaUsuario = [];
+let intentos = 0;
 
 function evaluarJuegoFinalizo() {
   const cantidadCuadros = document.querySelectorAll('.cuadro').length;
@@ -26,6 +27,10 @@ function evaluarSecuenciaCorrecta() {
   }
 }
 
+function actualizarIntentos(intentos) {
+  document.querySelector('#intentos').textContent = 'Intentos realizados: ' + intentos;
+}
+
 function manejarInputUsuario(cuadroClickeado) {
   const color = cuadroClickeado.dataset.color;
   cuadroClickeado.classList.add(color, 'volteado');
@@ -34,6 +39,8 @@ function manejarInputUsuario(cuadroClickeado) {
   if (secuenciaUsuario.length == 2) {
     evaluarSecuenciaCorrecta();
     secuenciaUsuario = [];
+    intentos++;
+    actualizarIntentos(intentos);
   }
 }
 
