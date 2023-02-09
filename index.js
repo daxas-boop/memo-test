@@ -67,7 +67,23 @@ function asignarColoresACuadros() {
   });
 }
 
+function reiniciarEstadoCuadros() {
+  const cuadros = document.querySelectorAll('.cuadro');
+  cuadros.forEach((cuadro, i) => {
+    cuadro.classList.remove('encontrado', 'volteado', cuadro.dataset.color);
+  });
+}
+
+function reiniciarJuego() {
+  reiniciarEstadoCuadros();
+  asignarColoresACuadros();
+  document.querySelector('#modal-ganar').classList.add('escondido');
+  intentos = 0;
+  actualizarIntentos(0);
+}
+
 function inicializar() {
+  document.querySelector('#reiniciar-juego').onclick = reiniciarJuego;
   asignarColoresACuadros();
   habilitarInputUsuario();
 }
