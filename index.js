@@ -1,5 +1,14 @@
 let secuenciaUsuario = [];
 
+function evaluarJuegoFinalizo() {
+  const cantidadCuadros = document.querySelectorAll('.cuadro').length;
+  const cantidadCuadrosEncontrados = document.querySelectorAll('.encontrado').length;
+
+  if (cantidadCuadrosEncontrados === cantidadCuadros) {
+    document.querySelector('#modal-ganar').classList.remove('escondido');
+  }
+}
+
 function evaluarSecuenciaCorrecta() {
   const primerCuadro = secuenciaUsuario[0];
   const segundoCuadro = secuenciaUsuario[1];
@@ -7,6 +16,7 @@ function evaluarSecuenciaCorrecta() {
     setTimeout(() => {
       primerCuadro.classList.add('encontrado');
       segundoCuadro.classList.add('encontrado');
+      evaluarJuegoFinalizo();
     }, 500);
   } else {
     setTimeout(() => {
