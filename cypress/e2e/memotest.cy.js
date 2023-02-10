@@ -18,6 +18,25 @@ describe('Memotest', () => {
       });
     });
 
+    it('Los colores de los cuadros son aleatorios', () => {
+      const coloresOriginales = [];
+      const coloresNuevos = [];
+      cy.get('.cuadro').then((cuadros) => {
+        cuadros.each((i, cuadro) => {
+          coloresOriginales.push(cuadro.dataset.color);
+        });
+
+        cy.visit(URL);
+
+        cy.get('.cuadro').then((cuadros) => {
+          cuadros.each((i, cuadro) => {
+            coloresNuevos.push(cuadro.dataset.color);
+          });
+          expect(coloresOriginales).to.not.deep.equal(coloresNuevos);
+        });
+      });
+    });
+
     it('El titulo carga correctamente', () => {
       cy.get('h1:first').should('have.text', 'Memotest');
     });
@@ -68,6 +87,25 @@ describe('Memotest', () => {
         cy.get(`[data-color=${color}]`).eq(1).click();
       });
       cy.get('#modal-ganar').should('not.have.class', 'escondido');
+    });
+
+    it('Los colores de los cuadros se resetean despues de clickear Reiniciar', () => {
+      const coloresOriginales = [];
+      const coloresNuevos = [];
+      cy.get('.cuadro').then((cuadros) => {
+        cuadros.each((i, cuadro) => {
+          coloresOriginales.push(cuadro.dataset.color);
+        });
+
+        cy.get('#reiniciar-juego').click();
+
+        cy.get('.cuadro').then((cuadros) => {
+          cuadros.each((i, cuadro) => {
+            coloresNuevos.push(cuadro.dataset.color);
+          });
+          expect(coloresOriginales).to.not.deep.equal(coloresNuevos);
+        });
+      });
     });
 
     it('Los intentos se actualizan correctamente', () => {
