@@ -3,7 +3,7 @@
   background-color: blue;
   border-radius: 6px;
   margin: 3px;
-  height: 80px;
+  height: 115px;
   cursor: pointer;
   transform: rotateX(0deg) translateZ(1px);
   transition: transform 0.3s ease-out 0s;
