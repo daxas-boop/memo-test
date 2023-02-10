@@ -6,6 +6,27 @@ const sonidos = {
 let secuenciaUsuario = [];
 let intentos = 0;
 
+function mostrarCuadro(cuadro) {
+  cuadro.classList.add(cuadro.dataset.color, 'volteado');
+}
+
+function ocultarCuadro(cuadro) {
+  cuadro.classList.remove('volteado', cuadro.dataset.color);
+}
+
+function eliminarCuadro(cuadro) {
+  cuadro.classList.add('encontrado');
+}
+
+function reproducirSonido(sonido) {
+  sonido.currentTime = 0;
+  sonido.play();
+}
+
+function actualizarIntentos(intentos) {
+  document.querySelector('#intentos').textContent = 'Intentos realizados: ' + intentos;
+}
+
 function evaluarJuegoFinalizo() {
   const cantidadCuadros = document.querySelectorAll('.cuadro').length;
   const cantidadCuadrosEncontrados = document.querySelectorAll('.encontrado').length;
@@ -15,40 +36,30 @@ function evaluarJuegoFinalizo() {
   }
 }
 
-function evaluarSecuenciaCorrecta() {
-  const primerCuadro = secuenciaUsuario[0];
-  const segundoCuadro = secuenciaUsuario[1];
+function evaluarSecuenciaCorrecta(primerCuadro, segundoCuadro) {
   if (primerCuadro.dataset.color === segundoCuadro.dataset.color) {
     setTimeout(() => {
-      primerCuadro.classList.add('encontrado');
-      segundoCuadro.classList.add('encontrado');
-      sonidos.acierto.currentTime = 0;
-      sonidos.acierto.play();
+      eliminarCuadro(primerCuadro);
+      eliminarCuadro(segundoCuadro);
+      reproducirSonido(sonidos.acierto);
       evaluarJuegoFinalizo();
     }, 500);
   } else {
     setTimeout(() => {
-      primerCuadro.classList.remove('volteado', primerCuadro.dataset.color);
-      segundoCuadro.classList.remove('volteado', segundoCuadro.dataset.color);
-      sonidos.error.currentTime = 0;
-      sonidos.error.play();
+      ocultarCuadro(primerCuadro);
+      ocultarCuadro(segundoCuadro);
+      reproducirSonido(sonidos.error);
     }, 500);
   }
 }
 
-function actualizarIntentos(intentos) {
-  document.querySelector('#intentos').textContent = 'Intentos realizados: ' + intentos;
-}
-
 function manejarInputUsuario(cuadroClickeado) {
-  const color = cuadroClickeado.dataset.color;
-  cuadroClickeado.classList.add(color, 'volteado');
-  sonidos.click.currentTime = 0;
-  sonidos.click.play();
+  mostrarCuadro(cuadroClickeado);
+  reproducirSonido(sonidos.click);
   secuenciaUsuario.push(cuadroClickeado);
 
   if (secuenciaUsuario.length == 2) {
-    evaluarSecuenciaCorrecta();
+    evaluarSecuenciaCorrecta(secuenciaUsuario[0], secuenciaUsuario[1]);
     secuenciaUsuario = [];
     intentos++;
     actualizarIntentos(intentos);
