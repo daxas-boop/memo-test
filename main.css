@@ -1,0 +1,73 @@
+.cuadro {
+  opacity: 35%;
+  background-color: blue;
+  border-radius: 6px;
+  margin: 3px;
+  height: 80px;
+  cursor: pointer;
+  transform: rotateX(0deg) translateZ(1px);
+  transition: transform 0.3s ease-out 0s;
+}
+
+@media screen and (min-width: 768px) {
+  .cuadro {
+    height: 125px;
+  }
+
+  #tablero {
+    padding: 0 100px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .cuadro {
+    height: 200px;
+  }
+}
+
+.volteado {
+  opacity: 100%;
+  transform: rotateX(180deg) translateZ(1px);
+}
+
+.encontrado {
+  opacity: 0%;
+  cursor: default;
+  transform: rotateX(180deg) translateZ(1px);
+}
+
+.escondido {
+  display: none;
+}
+
+.rojo {
+  background-color: red;
+}
+
+.azul {
+  background-color: blue;
+}
+
+.verde {
+  background-color: green;
+}
+
+.negro {
+  background-color: black;
+}
+
+.rosa {
+  background-color: pink;
+}
+
+.naraja {
+  background-color: orange;
+}
+
+.gris {
+  background-color: grey;
+}
+
+.amarillo {
+  background-color: yellow;
+}
