@@ -1,7 +1,7 @@
 /// <reference types="cypress" />;
 
 describe('Memotest', () => {
-  const URL = 'http://127.0.0.1:5500';
+  const URL = 'http://localhost:8080/';
   it('La pagina carga correctamente', () => {
     cy.visit(URL);
   });
